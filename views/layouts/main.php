@@ -73,7 +73,6 @@ AppAsset::register($this);
                                 } else {}
                 ?>
             </div>
-             
              <?php //echo \app\components\widgets\userMenu::widget(); ?>
             <?php //\app\components\widgets\LanguageSelector::widget(); ?>   
         </div>
