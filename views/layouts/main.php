@@ -80,6 +80,7 @@ AppAsset::register($this);
                         
             <?= $content ?>
         </div>               
+        
     </div>
 </div>
 
