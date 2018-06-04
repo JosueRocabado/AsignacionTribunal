@@ -1,5 +1,5 @@
 <?php 
-use yii\helpers\BaseUrl
+use yii\helpers\BaseUrl;
 
 ?>
 <ul class="nav nav-pills nav-stacked list-group">
