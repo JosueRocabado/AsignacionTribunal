@@ -24,6 +24,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'materno_doc') ?>
 
     <?= $form->field($model, 'titulo_doc') ?>
+  <?= $form->field($model, 'direccion_trad_doc') ?>
 
     <?php // echo $form->field($model, 'correo_usr') ?>
 

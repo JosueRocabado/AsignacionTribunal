@@ -32,10 +32,10 @@ class DocenteController extends Controller
     return [
       'access' => [
         'class' => AccessControl::className(),
-        'only' => ['lista_docente','docente_insertar','docente_modificar', 'docente_elminiar'],
+        'only' => ['lista_docente', 'docente_insertar', 'docente_modificar', 'docente_elminiar'],
         'rules' => [
           [
-            'actions' => ['lista_docente','docente_insertar','docente_modificar', 'docente_elminiar'],
+            'actions' => ['lista_docente', 'docente_insertar', 'docente_modificar', 'docente_elminiar'],
             'allow' => true,
             'roles' => ['@'],
           ],
@@ -123,7 +123,6 @@ class DocenteController extends Controller
   public function actionDelete($id)
   {
     $this->findModel($id)->delete();
-
     return $this->redirect(['index']);
   }
 
@@ -142,47 +141,44 @@ class DocenteController extends Controller
       throw new NotFoundHttpException('The requested page does not exist.');
     }
   }
-  /*
-   * @ desde aqui se realizan los cambios con procedimiento almacenado
-   */
-  public function actionLista_docente(){
-    $model = new Docente();
-    $search= new BusquedaForm();
-    if($search->load(Yii::$app->request->get())&& $search->validate()){
-      $datos = $search->docente_busqueda($search);
-      return $this->render('lista_docente', ['dataProvider' => $datos, 'model'=>$search]);
-    }else{
-      $datos=$model->lista_docente();
-      return $this->render('lista_docente', [
-        'dataProvider' => $datos,'model'=>$search
-      ]);
-    }}
 
-  /*
-   * @ desde aqui se realizan los cambios con procedimiento almacenado
-   */
+
+  public function actionLista_docente()
+  {
+    $model = new Docente();
+    $search = new BusquedaForm();
+    if ($search->load(Yii::$app->request->get()) && $search->validate()) {
+      $datos = $search->docente_busqueda($search);
+      return $this->render('lista_docente', ['dataProvider' => $datos, 'model' => $search]);
+    } else {
+      $datos = $model->lista_docente();
+      return $this->render('lista_docente', [
+        'dataProvider' => $datos, 'model' => $search
+      ]);
+    }
+  }
+
+
   public function actionDocente_insertar()
   {
     $model = new Docente();
-    $mensaje= null;
+    $mensaje = null;
     /*validar con ajax*/
-    if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax)
-    {
+    if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
       Yii::$app->response->format = Response::FORMAT_JSON;
       return ActiveForm::validate($model);
     }
-    if ($model->load(Yii::$app->request->post()))
-    {
-      if($model->validate()){
-        if($model->docente_insertar($model)){
+    if ($model->load(Yii::$app->request->post())) {
+      if ($model->validate()) {
+        if ($model->docente_insertar($model)) {
           $mensaje = "Ha ocurrido un error al llevar a cabo tu registro";
-        }else{
+        } else {
 
           $docente = $model->find()->where(["correo_doc" => $model->correo_doc])->one();
           $id = urlencode($docente->iddocente);
           $subject = "Confirmar registro";
           $body = "<h1>Haga click en el siguiente enlace para finalizar tu registro</h1>";
-          $body .= "<a href='http://asignacionTribunal/index.php?r=site/confirm&id=".$id."&authKey=".$conf_contrasenia."'>Confirmar</a>";
+          $body .= "<a href='http://asignacionTribunal/index.php?r=site/confirm&id=" . $id . "&authKey=" . $conf_contrasenia . "'>Confirmar</a>";
           Yii::$app->mailer->compose()
             ->setTo($docente->correo_doc)
             ->setFrom([Yii::$app->params["adminEmail"] => Yii::$app->params["title"]])
@@ -193,14 +189,13 @@ class DocenteController extends Controller
           //$mensaje = "En hora buena, ahora sólo falta que confirmes tu registro en tu cuenta de correo";
           return $this->redirect(['lista_docente', 'id' => $model->iddocente]);
         }
-      }else{
+      } else {
 //           //mostrar los errores
         $model->getErrors();
       }
     }
-    return $this->render('docente_insertar', ['model' => $model, 'mensaje'=>$mensaje]);
+    return $this->render('docente_insertar', ['model' => $model, 'mensaje' => $mensaje]);
   }
-
 
 
   public function actionDocente_eliminar($id)
@@ -208,6 +203,5 @@ class DocenteController extends Controller
     $model = new Docente();
     $model->docente_eliminar($this->findModel($id));
     return $this->redirect(['lista_docente']);
-
   }
 }

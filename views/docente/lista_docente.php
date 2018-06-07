@@ -52,11 +52,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="well">
          <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'nombre_doc',
             'paterno_doc',
+            'materno_doc',
             'titulo_doc',
             'carga_horaria_doc',
 
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['view', 'id' => $model['iddocente']]);
                         },
                     'update' => function($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['modificar', 'id' => $model['iddocente'], 'id_rol' => $model['idrol'], 'id_usr_rol'=>$model['idusr_rol']]);
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['modificar', 'id' => $model['iddocente']]);
                         },
                     'delete' => function ($url, $model) {
                         return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['docente_eliminar', 'id' => $model['iddocente']], [

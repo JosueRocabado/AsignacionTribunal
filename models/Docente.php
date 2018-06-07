@@ -53,7 +53,6 @@ class Docente extends \yii\db\ActiveRecord
       //validando correo electronico
       ['correo_doc', 'match', 'pattern' => "/^.{5,80}$/", 'message' => 'Mínimo 5 y máximo 80 caracteres'],
       ['correo_doc', 'email', 'message' => 'Formato no válido'],
-      ['correo_doc', 'email_existe'],
     ];
   }
 
@@ -65,8 +64,8 @@ class Docente extends \yii\db\ActiveRecord
     return [
       'iddocente' => 'IdDocente',
       'nombre_doc' => 'Nombre',
-      'paterno_doc' => 'Paterno ',
-      'materno_doc' => 'Materno ',
+      'paterno_doc' => 'Apellido Paterno ',
+      'materno_doc' => 'Apellido Materno ',
       'correo_doc' => 'Correo',
       'titulo_doc' => 'Titulo',
       'carga_horaria_doc' => 'Carga Horaria',
@@ -74,7 +73,7 @@ class Docente extends \yii\db\ActiveRecord
       'telefono_doc' => 'Telefono',
       'direccion_trad_doc' => 'Direccion',
       'perfil_doc' => 'Perfil',
-      'ci_doc' => 'Ci',
+      'ci_doc' => 'CI',
       'cod_sis_doc' => 'Codigo Sis',
       'es_tutor' => 'Tutor',
       'es_tribunal' => 'Tribunal',
@@ -125,5 +124,31 @@ class Docente extends \yii\db\ActiveRecord
       ->bindValue(':iddocente', $model->iddocente)
       ->execute();
     return $sql;
+  }
+
+  /*
+ * function to list all the profesionals existents
+ */
+  public function lista_docente(){
+    $db = Yii::$app->db;
+    $count = $db->createCommand('select 
+	 COUNT(*)
+	 from docente d order by iddocente DESC 
+	 ')->queryScalar();
+    $provider = new SqlDataProvider([
+      'sql' => 'select d.*
+        from docente d 
+        order by iddocente desc',
+      'totalCount' => $count,
+      'pagination' => [
+        'pageSize' => 5,
+      ],
+      'sort' => [
+        'attributes' => [
+          'nombre',
+        ],
+      ],
+    ]);
+    return $provider;
   }
 }

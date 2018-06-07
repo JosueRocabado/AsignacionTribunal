@@ -23,11 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
           'titulo_doc',
           'carga_horaria_doc',
           'telefono_doc',
-          'direccion_trad_doc',
+          //'direccion_trad_doc',
           'perfil_doc',
           'ci_doc',
           'cod_sis_doc',
-          'cantidad_estu_tri',
+          //'cantidad_estu_tri',
         ],
     ]) ?>
     </div>
