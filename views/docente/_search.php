@@ -10,39 +10,35 @@ use yii\widgets\ActiveForm;
 
 <div class="docente-search">
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+  <?php $form = ActiveForm::begin([
+    'action' => ['index'],
+    'method' => 'get',
+  ]); ?>
 
-    <?= $form->field($model, 'iddocente') ?>
+  <?= $form->field($model, 'iddocente') ?>
+  <?= $form->field($model, 'nombre_doc') ?>
+  <?= $form->field($model, 'paterno_doc') ?>
+  <?= $form->field($model, 'materno_doc') ?>
+  <?= $form->field($model, 'titulo_doc') ?>
+  <?= $form->field($model, 'direccion_tra_doc') ?>
 
-    <?= $form->field($model, 'nombre_doc') ?>
+  <?php // echo $form->field($model, 'correo_usr') ?>
 
-    <?= $form->field($model, 'paterno_doc') ?>
+  <?php // echo $form->field($model, 'usuario') ?>
 
-    <?= $form->field($model, 'materno_doc') ?>
+  <?php // echo $form->field($model, 'contrasenia') ?>
 
-    <?= $form->field($model, 'titulo_doc') ?>
-  <?= $form->field($model, 'direccion_trad_doc') ?>
+  <?php // echo $form->field($model, 'conf_contrasenia') ?>
 
-    <?php // echo $form->field($model, 'correo_usr') ?>
+  <?php // echo $form->field($model, 'activate') ?>
 
-    <?php // echo $form->field($model, 'usuario') ?>
-
-    <?php // echo $form->field($model, 'contrasenia') ?>
-
-    <?php // echo $form->field($model, 'conf_contrasenia') ?>
-
-    <?php // echo $form->field($model, 'activate') ?>
-
-    <?php // echo $form->field($model, 'accessToken') ?>
+  <?php // echo $form->field($model, 'accessToken') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+      <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+      <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+  <?php ActiveForm::end(); ?>
 
 </div>

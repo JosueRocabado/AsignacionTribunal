@@ -11,7 +11,7 @@ use yii\helpers\ArrayHelper;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="usuario-form">
+<div class="docente-form">
     <div class="well">
       <h3 class="text-center">ACTUALIZAR INFORMACION</h3>
       <br><br>

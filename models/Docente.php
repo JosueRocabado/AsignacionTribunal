@@ -23,13 +23,13 @@ use yii\data\SqlDataProvider;
  * @property string $carga_horaria_doc
  * @property string $nombre_cuenta_doc
  * @property integer $telefono_doc
- * @property string $direccion_trad_doc
+ * @property string $direccion_tra_doc
  * @property string $perfil_doc
  * @property integer $ci_doc
  * @property integer $cod_sis_doc
  * @property integer $es_tutor
  * @property integer $es_tribunal
- * @property integer $cantidad_estu_tri
+ * @property integer $cant_estu_tri
  */
 class Docente extends \yii\db\ActiveRecord
 {
@@ -48,8 +48,8 @@ class Docente extends \yii\db\ActiveRecord
   {
     return [
       [['nombre_doc', 'paterno_doc', 'materno_doc', 'correo_doc', 'nombre_cuenta_doc', 'ci_doc'], 'required'],
-      [['telefono_doc', 'ci_doc', 'cod_sis_doc', 'es_tutor', 'es_tribunal', 'cantidad_estu_tri'], 'integer'],
-      [['nombre_doc', 'paterno_doc', 'materno_doc', 'titulo_doc', 'carga_horaria_doc', 'direccion_trad_doc', 'perfil_doc', 'correo_doc'], 'string', 'max' => 55],
+      [['telefono_doc', 'ci_doc', 'cod_sis_doc', 'es_tutor', 'es_tribunal', 'cant_estu_tri'], 'integer'],
+      [['nombre_doc', 'paterno_doc', 'materno_doc', 'titulo_doc', 'carga_horaria_doc', 'direccion_tra_doc', 'perfil_doc', 'correo_doc'], 'string', 'max' => 55],
       //validando correo electronico
       ['correo_doc', 'match', 'pattern' => "/^.{5,80}$/", 'message' => 'Mínimo 5 y máximo 80 caracteres'],
       ['correo_doc', 'email', 'message' => 'Formato no válido'],
@@ -71,13 +71,13 @@ class Docente extends \yii\db\ActiveRecord
       'carga_horaria_doc' => 'Carga Horaria',
       'nombre_cuenta_doc' => 'Nombre Cuenta',
       'telefono_doc' => 'Telefono',
-      'direccion_trad_doc' => 'Direccion',
+      'direccion_tra_doc' => 'Direccion',
       'perfil_doc' => 'Perfil',
       'ci_doc' => 'CI',
       'cod_sis_doc' => 'Codigo Sis',
       'es_tutor' => 'Tutor',
       'es_tribunal' => 'Tribunal',
-      'cantidad_estu_tri' => 'Cantidad Tribunal',
+      'cant_estu_tri' => 'Cantidad Tribunal',
     ];
   }
 
@@ -94,7 +94,7 @@ class Docente extends \yii\db\ActiveRecord
    */
   public function docente_insertar($model)
   {
-    $params = ':iddocente,:nombre_doc, :paterno_doc, :materno_doc, :correo_doc, :titulo_doc, :carga_horaria_doc, :nombre_cuenta_doc,:telefono_doc, :direccion_trad_doc, :perfil_doc, :ci_doc, :cod_sis_doc, :es_tutor, :es_tribunal, :cantidad_estu_tri';
+    $params = ':iddocente,:nombre_doc, :paterno_doc, :materno_doc, :correo_doc, :titulo_doc, :carga_horaria_doc, :nombre_cuenta_doc,:telefono_doc, :direccion_tra_doc, :perfil_doc, :ci_doc, :cod_sis_doc, :es_tutor, :es_tribunal, :cant_estu_tri';
     Yii::$app->db->createCommand('call docente_insertar(' . $params . ')')
       ->bindValue(':iddocente', $model->iddocente)
       ->bindValue(':nombre_doc', $model->nombre_doc)
@@ -105,13 +105,13 @@ class Docente extends \yii\db\ActiveRecord
       ->bindValue(':carga_horaria_doc', $model->carga_horaria_doc)
       ->bindValue(':nombre_cuenta_doc', $model->nombre_cuenta_doc)
       ->bindValue(':telefono_doc', $model->telefono_doc)
-      ->bindValue(':direccion_trad_doc', $model->direccion_trad_doc)
+      ->bindValue(':direccion_tra_doc', $model->direccion_tra_doc)
       ->bindValue(':perfil_doc', $model->perfil_doc)
       ->bindValue(':ci_doc', $model->ci_doc)
       ->bindValue(':cod_sis_doc', $model->cod_sis_doc)
       ->bindValue(':es_tutor', $model->es_tutor)
       ->bindValue(':es_tribunal', $model->es_tribunal)
-      ->bindValue(':cantidad_estu_tri', $model->cantidad_estu_tri)
+      ->bindValue(':cant_estu_tri', $model->cant_estu_tri)
       ->execute();
 
   }

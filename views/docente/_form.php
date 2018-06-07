@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 
   <?= $form->field($model, 'telefono_doc')->textInput(['maxlength' => true]) ?>
 
-  <?= $form->field($model, 'direccion_trad_doc')->textInput(['maxlength' => true]) ?>
+  <?= $form->field($model, 'direccion_tra_doc')->textInput(['maxlength' => true]) ?>
 
   <?= $form->field($model, 'perfil_doc')->textInput(['maxlength' => true]) ?>
 
@@ -40,7 +40,7 @@ use yii\widgets\ActiveForm;
 
   <?= $form->field($model, 'es_tribunal')->textInput() ?>
 
-  <?= $form->field($model, 'cantidad_estu_tri')->textInput(['maxlength' => true]) ?>
+  <?= $form->field($model, 'cant_estu_tri')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
       <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
