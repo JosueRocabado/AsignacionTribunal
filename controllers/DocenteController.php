@@ -168,35 +168,44 @@ class DocenteController extends Controller
       Yii::$app->response->format = Response::FORMAT_JSON;
       return ActiveForm::validate($model);
     }
-    if ($model->load(Yii::$app->request->post())) {
+    if ($model->load(Yii::$app->request->post()))
+    {
       if ($model->validate()) {
         if ($model->docente_insertar($model)) {
           $mensaje = "Ha ocurrido un error al llevar a cabo tu registro";
-        } else {
-
+          }
+          else {
           $docente = $model->find()->where(["correo_doc" => $model->correo_doc])->one();
           $id = urlencode($docente->iddocente);
           $subject = "Confirmar registro";
           $body = "<h1>Haga click en el siguiente enlace para finalizar tu registro</h1>";
-          $body .= "<a href='http://asignacionTribunal/index.php?r=site/confirm&id=" . $id . "&authKey=" . $conf_contrasenia . "'>Confirmar</a>";
           Yii::$app->mailer->compose()
             ->setTo($docente->correo_doc)
             ->setFrom([Yii::$app->params["adminEmail"] => Yii::$app->params["title"]])
             ->setSubject($subject)
             ->setHtmlBody($body)
             ->send();
-
-          //$mensaje = "En hora buena, ahora sólo falta que confirmes tu registro en tu cuenta de correo";
           return $this->redirect(['lista_docente', 'id' => $model->iddocente]);
         }
       } else {
-//           //mostrar los errores
         $model->getErrors();
       }
     }
     return $this->render('docente_insertar', ['model' => $model, 'mensaje' => $mensaje]);
   }
 
+  /*para ver el formulario*/
+  public function actionModificar($id)
+  {
+    $model = $this->findModel($id);
+    if ($model->load(Yii::$app->request->post()) && $model->save()) {
+      return $this->redirect(['view', 'id' => $model->iddocente]);
+    } else {
+      return $this->render('modificar', [
+        'model' => $model,
+      ]);
+    }
+  }
 
   public function actionDocente_eliminar($id)
   {

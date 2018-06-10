@@ -38,7 +38,6 @@ AppAsset::register($this);
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
       ['label' => 'Inicio', 'url' => ['/site/index']],
-      ['label' => 'lista profesionales', 'url' => ['/site/lista_profesionales']],
       ['label' => 'Contacto', 'url' => ['/site/contact']],
       Yii::$app->user->isGuest ? (
       ['label' => 'Usur-Sis', 'url' => ['/site/login']]
@@ -58,21 +57,16 @@ AppAsset::register($this);
   ?>
 
     <div class="container">
-      <?php //echo Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]) ?>
         <div class="col-lg-3 col-md-3 col-sm-3">
             <div class="row">
               <?php
               if (!Yii::$app->user->isGuest) {
                 echo \app\components\widgets\userMenu::widget();
-              } else {
               }
               ?>
             </div>
-          <?php //echo \app\components\widgets\userMenu::widget(); ?>
-          <?php //\app\components\widgets\LanguageSelector::widget(); ?>
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9">
-
           <?= $content ?>
         </div>
 
@@ -82,8 +76,6 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; FCYT</p>
-
-        <p class="pull-right"><?php // Yii::powered() ?></p>
     </div>
 </footer>
 
