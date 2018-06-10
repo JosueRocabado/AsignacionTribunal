@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\UsuarioSearch */
+/* @var $searchModel app\models\DocentesoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-/*$this->title = 'Lista de usuario';
+$this->title = 'Lista de docentes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="usuario-index">
+<div class="docente-index">
      <h3 class="text-center"><?= Html::encode($this->title) ?></h3>
     <div class="well">
        
@@ -20,24 +20,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Usuario', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Docente', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'idusuario',
-            'nombre_usr',
-            'apellido_paterno_usr',
-            'apellido_materno_usr',
-            'celular_usr',
-            // 'correo_usr',
-            // 'usuario',
-            // 'contrasenia',
-            // 'conf_contrasenia',
-            // 'activate',
-            // 'accessToken',
+            'iddocente',
+            'nombre_doc',
+            'paterno_doc',
+            'materno_doc',
+            'telefono_doc',
+            'titulo_doc',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

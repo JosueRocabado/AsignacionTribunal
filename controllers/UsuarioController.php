@@ -153,9 +153,7 @@ class UsuarioController extends Controller
             'dataProvider' => $datos,'model'=>$search
         ]);
     }}
-    /*
-     * accion para cambiar el estado de la ciudad
-     */
+
     public function actionUsuario_estado($id){
         $model= $this->findModel($id);
         $model->usuario_estado($model);
@@ -178,7 +176,6 @@ class UsuarioController extends Controller
         if ($model->load(Yii::$app->request->post())) 
         {          
           if($model->validate()){
-//                $mensaje="exito se registro los datos";
                 $model->activate=0;                
                 $model->contrasenia = crypt($model->contrasenia, Yii::$app->params["salt"]);
                 $model->conf_contrasenia = $this->randKey("abcdef0123456789", 20);
@@ -206,11 +203,9 @@ class UsuarioController extends Controller
                     $model_usr_rol->usuario_idusuario= $user->idusuario;
                     $model_usr_rol->rol_idrol=$model->id_rol;
                     $model_usr_rol->insert();
-                    //$mensaje = "En hora buena, ahora sólo falta que confirmes tu registro en tu cuenta de correo"; 
                     return $this->redirect(['lista_usuario', 'id' => $model->idusuario]);
                     }  
           }else{
-//           //mostrar los errores
               $model->getErrors();
           }
         }
@@ -251,6 +246,5 @@ class UsuarioController extends Controller
         $model = new Usuario();
         $model->usuario_eliminar($this->findModel($id));
         return $this->redirect(['lista_usuario']);
-         
     }
 }
