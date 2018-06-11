@@ -113,7 +113,6 @@ class Docente extends \yii\db\ActiveRecord
       ->bindValue(':es_tribunal', $model->es_tribunal)
       ->bindValue(':cant_estu_tri', $model->cant_estu_tri)
       ->execute();
-
   }
 
   /*funcion para eliminar datos*/

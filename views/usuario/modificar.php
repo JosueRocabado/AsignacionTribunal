@@ -55,7 +55,6 @@ use yii\helpers\ArrayHelper;
             <div class="col-lg-5 col-md-5 col-sm-5">
               <?= $form->field($model, 'contrasenia')->passwordInput(['maxlength' => true]) ?>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-2"></div>
             <div class="col-lg-5 col-md-5 col-sm-5">
               <?= $form->field($model, 'conf_contrasenia')->passwordInput(['maxlength' => true]) ?>
             </div>
